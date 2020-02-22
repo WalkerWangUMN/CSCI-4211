@@ -2,7 +2,7 @@
 # This program serves as the server of DNS query.
 # Written in Python v3.
 
-import sys, threading, os, random
+import sys, threading, os, random, subprocess
 from socket import *
 
 def main():
@@ -52,22 +52,30 @@ def dnsQuery(connectionSock, srcAddress):
 		check = False
 		while record != '':
 			record = record.split(':')
-			recordDomainName = record[0]
-			if recordDomainName == data:
+			if record[0] == data:
 				check = True
 				if (record[-1] == "Host Not Found"):
 					message = "Host Not Found"
 				else:
-					message = "Local DNS" + data + ':' + dnsSelection(record[1:]) + '\n'
+					message = "Local DNS: " + data + ':' + dnsSelection(record[1:]) + '\n'
 			record = f.readline()
 		f.close()
 		if not check:
-			message = "Root DNS" + data + ':' + gethostbyname(data) + 'n'
+			message = "Root DNS: " + data + ':' + gethostbyname(data) + '\n'
 			f = open("DNS_Mapping.txt", 'a')
 			f.write(data+','+ gethostbyname(data) + '\n')
 			f.close()
 	except:
-		
+		message = "Root DNS: " + data + ":Host Not Found"
+		f = open("DNS_Mapping.txt", 'a')
+		f.write(data+",Host Not Found\n")
+		f.close()
+	#print response to the terminal
+	print(message)
+	#send the response back to the client
+	connectionSock.send(message.encode())	
+	#Close the server socket.
+	connectionSock.close()
 
   
 def dnsSelection(ipList):
