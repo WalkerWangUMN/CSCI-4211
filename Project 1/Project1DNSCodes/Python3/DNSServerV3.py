@@ -57,11 +57,11 @@ def dnsQuery(connectionSock, srcAddress):
 				if (record[-1] == "Host Not Found"):
 					message = "Host Not Found"
 				else:
-					message = "Local DNS: " + data + ':' + dnsSelection(record[1:]) + '\n'
+					message = "Local DNS: " + data + ':' + dnsSelection(record[1:])
 			record = f.readline()
 		f.close()
 		if not check:
-			message = "Root DNS: " + data + ':' + gethostbyname(data) + '\n'
+			message = "Root DNS: " + data + ':' + gethostbyname(data)
 			f = open("DNS_Mapping.txt", 'a')
 			f.write(data+','+ gethostbyname(data) + '\n')
 			f.close()
