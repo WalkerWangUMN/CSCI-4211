@@ -47,8 +47,27 @@ def dnsQuery(connectionSock, srcAddress):
 		nF.close()
 		f = open("DNS_Mapping.txt", 'r')
 	data = connectionSock.recv(1024).decode()
-	
-
+	try:
+		record = f.readline()
+		check = False
+		while record != '':
+			record = record.split(':')
+			recordDomainName = record[0]
+			if recordDomainName == data:
+				check = True
+				if (record[-1] == "Host Not Found"):
+					message = "Host Not Found"
+				else:
+					message = "Local DNS" + data + ':' + dnsSelection(record[1:]) + '\n'
+			record = f.readline()
+		f.close()
+		if not check:
+			message = "Root DNS" + data + ':' + gethostbyname(data) + 'n'
+			f = open("DNS_Mapping.txt", 'a')
+			f.write(data+','+ gethostbyname(data) + '\n')
+			f.close()
+	except:
+		
 
   
 def dnsSelection(ipList):
