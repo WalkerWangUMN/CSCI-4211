@@ -7,14 +7,14 @@ from socket import *
 
 def main():
 	host = "localhost" # Hostname. It can be changed to anything you desire.
-	port = 5001 # Port number.
+	port = 9889 # Port number.
 
 	#create a socket object, SOCK_STREAM for TCP
-
+	sSock = socket(AF_INET, SOCK_STREAM)
 	#bind socket to the current address on port 5001
-
+	sSock.bind((host, port))
 	#Listen on the given socket maximum number of connections queued is 20
-	
+	sSock.listen(20)
 
 	monitor = threading.Thread(target=monitorQuit, args=[])
 	monitor.start()
@@ -40,12 +40,31 @@ def dnsQuery(connectionSock, srcAddress):
 	#print response to the terminal
 	#send the response back to the client
 	#Close the server socket.
+	try:
+		f = open("DNS_Mapping.txt", 'r')
+	except error:
+		nF = open("DNS_Mapping.txt", 'w')
+		nF.close()
+		f = open("DNS_Mapping.txt", 'r')
+	data = connectionSock.recv(1024).decode()
+	
+
+
   
 def dnsSelection(ipList):
 	#checking the number of IP addresses in the cache
 	#if there is only one IP address, return the IP address
 	#if there are multiple IP addresses, select one and return.
 	##bonus project: return the IP address according to the Ping value for better performance (lower latency)
+	if ipList[1:] == []:
+		return ipList[0]
+	else:
+		re = []
+		for i in range(len(ipList)):
+			output = subprocess.check_output("ping -c 1 " + ipList[i],shell=True).decode()
+			re.append(float(output.split("time=")[1].split(" ")[0]))
+		i = re.index(min(re))
+		return ipList[i]
 
 def monitorQuit():
 	while 1:
