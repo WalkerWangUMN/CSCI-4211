@@ -4,8 +4,10 @@ www.facebook.com,157.240.2.35
 www.baidu.com,104.193.88.123
 hhha,Host Not Found
 ,0.0.0.0
-www.baidu.com,104.193.88.123
 www.linkedin.com,108.174.10.10
 www.sina.com,47.246.17.233
 www.taobao.com,47.246.25.233
+,0.0.0.0
+www.youtube.com,74.125.124.136
+www.tencent.com,150.109.207.81
 ,0.0.0.0

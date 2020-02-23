@@ -76,7 +76,6 @@ def dnsQuery(connectionSock, srcAddress):
 	connectionSock.send(message.encode())	
 	#Close the server socket.
 	connectionSock.close()
-
   
 def dnsSelection(ipList):
 	#checking the number of IP addresses in the cache
