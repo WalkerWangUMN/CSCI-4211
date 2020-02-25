@@ -1,13 +1,13 @@
-www.notfound.notfound,Host Not Found
-www.google.com,172.217.214.104
-www.facebook.com,157.240.2.35
-www.baidu.com,104.193.88.123
-hhha,Host Not Found
-,0.0.0.0
-www.linkedin.com,108.174.10.10
-www.sina.com,47.246.17.233
-www.taobao.com,47.246.25.233
-,0.0.0.0
-www.youtube.com,74.125.124.136
+www.google.com,172.217.4.196
+www.youtube.com,216.58.192.174
+wwww.facebook.com,157.240.26.18
+noufound,Host Not Found
 www.tencent.com,150.109.207.81
-,0.0.0.0
+www.taobao.com,47.246.25.234
+oopssss,Host Not Found
+niubility,Host Not Found
+www.linkedin.com,108.174.11.17
+www.leetcode.com,134.209.142.218
+www.bytedance.com,146.57.254.136
+www.tiktok.com,146.57.254.139
+www.amazon.com,23.35.201.13

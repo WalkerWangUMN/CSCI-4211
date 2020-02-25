@@ -47,6 +47,9 @@ def dnsQuery(connectionSock, srcAddress):
 		nF.close()
 		f = open("DNS_Mapping.txt", 'r')
 	data = connectionSock.recv(1024).decode()
+	if data == "":
+		connectionSock.close()
+		return
 	try:
 		record = f.readline()
 		check = False
