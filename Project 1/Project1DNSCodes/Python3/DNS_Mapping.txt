@@ -11,3 +11,8 @@ www.taobao.com,47.246.25.233
 www.youtube.com,74.125.124.136
 www.tencent.com,150.109.207.81
 ,0.0.0.0
+www.google.com,172.217.6.4
+notfound,Host Not Found
+,0.0.0.0
+niuby,Host Not Found
+,0.0.0.0
