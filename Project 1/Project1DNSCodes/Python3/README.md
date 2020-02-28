@@ -7,7 +7,7 @@
 		* Enter "exit" to quit the server.
 * Client:
 	* Run:
-		* 'python3 DNSClientV3.py' to start the client side.
+		* "python3 DNSClientV3.py" to start the client side.
 		* Enter 'q' or 'Q' to exit the client.
 
 ### Execution
@@ -18,7 +18,7 @@
 	* There will be "domain name,IP address" in the terminal after you type the domain name in second terminal
 	* Enter "exit" and push return to quit the server if you want to kill the server side.
 * Second terminal
-	* Use 'python3 DNSClientV3.py' and push return to start the client side.
+	* Use "python3 DNSClientV3.py" and push return to start the client side.
 	* There will be "Type in a domain name to query, or 'q' to quit" in the terminal
 	* Type the domain name to get the IP address
 	* Enter 'q' or 'Q' to exit the client if you want to kill client side
