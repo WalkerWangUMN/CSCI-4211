@@ -3,22 +3,22 @@ Zhaoyu Wang, Zhang CSCI4211, 23/02/2020
 # Compilation
 Server:
     Run:
-        "python3 DNSServerV3.py" to start the server side.
-        Enter "exit" to quit the server.
+        "python3 DNSServerV3.py" to start the server side.<br/>
+        Enter "exit" to quit the server. <br/>
 Client:
     Run:
-        'python3 DNSClientV3.py' to start the client side.
-		Enter 'q' or 'Q' to exit the client.
+        'python3 DNSClientV3.py' to start the client side.<br/>
+		Enter 'q' or 'Q' to exit the client.<br/>
 
 # Execution
 Server:
     Run:
-        "python3 DNSServerV3.py" to start the server side.
-        Enter "exit" to quit the server.
+        "python3 DNSServerV3.py" to start the server side.<br/>
+        Enter "exit" to quit the server.<br/>
 Client:
     Run:
-        'python3 DNSClientV3.py' to start the client side.
-		Enter 'q' or 'Q' to exit the client.
+        'python3 DNSClientV3.py' to start the client side.<br/>
+		Enter 'q' or 'Q' to exit the client.<br/>
 
 
 # Description   
