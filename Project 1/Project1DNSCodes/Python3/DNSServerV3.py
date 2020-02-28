@@ -47,7 +47,9 @@ def dnsQuery(connectionSock, srcAddress):
 		nF.close()
 		f = open("DNS_Mapping.txt", 'r')
 	data = connectionSock.recv(1024).decode()
-	
+	if data == "":
+		connectionSock.close()
+		return
 	try:
 		record = f.readline()
 		check = False
@@ -55,8 +57,8 @@ def dnsQuery(connectionSock, srcAddress):
 			record = record.split(':')
 			if record[0] == data:
 				check = True
-				if (record[-1] == "Host Not Found"):
-					message = "Host Not Found"
+				if (record[-1] == "Host not found"):
+					message = "Host not found"
 				else:
 					message = "Local DNS: " + data + ':' + dnsSelection(record[1:])
 			record = f.readline()
@@ -67,9 +69,9 @@ def dnsQuery(connectionSock, srcAddress):
 			f.write(data+','+ gethostbyname(data) + '\n')
 			f.close()
 	except:
-		message = "Root DNS: " + data + ":Host Not Found"
+		message = "Root DNS: " + data + ":Host not found"
 		f = open("DNS_Mapping.txt", 'a')
-		f.write(data+",Host Not Found\n")
+		f.write(data+",Host not found\n")
 		f.close()
 	#print response to the terminal
 	print(message)
@@ -83,15 +85,7 @@ def dnsSelection(ipList):
 	#if there is only one IP address, return the IP address
 	#if there are multiple IP addresses, select one and return.
 	##bonus project: return the IP address according to the Ping value for better performance (lower latency)
-	if ipList[1:] == []:
-		return ipList[0]
-	else:
-		re = []
-		for i in range(len(ipList)):
-			output = subprocess.check_output("ping -c 1 " + ipList[i],shell=True).decode()
-			re.append(float(output.split("time=")[1].split(" ")[0]))
-		i = re.index(min(re))
-		return ipList[i]
+	return ipList[0]
 
 def monitorQuit():
 	while 1:
