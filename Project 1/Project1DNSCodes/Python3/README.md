@@ -2,13 +2,13 @@ Zhaoyu Wang, Zhang CSCI4211, 23/02/2020
 
 # Compilation
 Server:
-    Run:
-        "python3 DNSServerV3.py" to start the server side.<br/>
-        Enter "exit" to quit the server. <br/>
+	Run:
+		Using 'python3 DNSServerV3.py' to start the server.
+		Enter 'exit' to kill the server processor.
 Client:
-    Run:
-        'python3 DNSClientV3.py' to start the client side.<br/>
-		Enter 'q' or 'Q' to exit the client.<br/>
+	Run:
+		Using 'python3 DNSClientV3.py' to start the client.
+		Enter 'q' or 'quit' to exit.
 
 # Execution
 Server:
