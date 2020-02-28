@@ -8,7 +8,7 @@ Server:
 Client:
     Run:
         'python3 DNSClientV3.py' to start the client side.<br/>
-		Enter 'q' or 'Q' to exit the client.
+		Enter 'q' or 'Q' to exit the client.<br/>
 
 # Execution
 Server:
