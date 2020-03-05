@@ -1,9 +1,5 @@
-www.google.com,172.217.9.36
-www.facebook.com,157.240.2.35
-www.amazon.com,23.35.201.13
-www.linkedin.com,108.174.10.10
-www.microsoft.com,23.35.201.40
-notfound,Host not found
-www.umn.edu,134.84.159.77
-www.taobao.com,47.246.24.233
-niubility,Host not found
+www.baidu.com:104.193.88.123
+www.google.com:172.217.9.36
+notfound:Host not found
+www.facebook.com:157.240.2.35
+nnnn:Host not found

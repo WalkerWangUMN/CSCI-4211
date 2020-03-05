@@ -4,6 +4,7 @@
 
 import sys, threading, os, random, subprocess
 from socket import *
+from csv import writer
 
 def main():
 	host = "localhost" # Hostname. It can be changed to anything you desire.
@@ -61,18 +62,27 @@ def dnsQuery(connectionSock, srcAddress):
 					message = "Host not found"
 				else:
 					message = "Local DNS: " + data + ':' + dnsSelection(record[1:])
+					with open("dns-server-log.csv", 'a+', newline='') as write_obj:
+							csv_writer = writer(write_obj)
+							csv_writer.writerow([data, dnsSelection(record[1:])])
 			record = f.readline()
 		f.close()
 		if not check:
 			message = "Root DNS: " + data + ':' + gethostbyname(data)
 			f = open("DNS_Mapping.txt", 'a')
-			f.write(data+','+ gethostbyname(data) + '\n')
+			f.write(data+':'+ gethostbyname(data) + '\n')
 			f.close()
+			with open("dns-server-log.csv", 'a+', newline='') as write_obj:
+				csv_writer = writer(write_obj)
+				csv_writer.writerow([data, gethostbyname(data)])
 	except:
 		message = "Root DNS: " + data + ":Host not found"
 		f = open("DNS_Mapping.txt", 'a')
-		f.write(data+",Host not found\n")
+		f.write(data+":Host not found\n")
 		f.close()
+		with open("dns-server-log.csv", 'a+', newline='') as write_obj:
+			csv_writer = writer(write_obj)
+			csv_writer.writerow([data, "Host not found"])
 	#print response to the terminal
 	print(message)
 	#send the response back to the client
