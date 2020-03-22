@@ -11,7 +11,8 @@ class A:
         # "WAIT_LAYER5" is the state that A waits messages from application layer.
         # "WAIT_ACK" is the state that A waits acknowledgement
         # You can set the estimated_rtt to be 30, which is used as a parameter when you call start_timer
-
+        WAIT_ACK
+        WAIT_ACK
         return
 
     def A_output(self, m):

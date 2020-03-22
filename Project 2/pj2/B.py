@@ -6,13 +6,27 @@ class B:
         # TODO: initialization of the state of B
         # self.seq
         # ...
+        self.expect_seq = 1
+        self.packet_to_send.seqnum = -1
+        self.packet_to_send.acknum = 0
+        memset(self.packet_to_send.payload, 0, 20)
+        self.packet_to_send.checksum = get_checksum(&self.packet_to_send)
         return
 
     def B_input(self, pkt):
         # TODO: process the packet recieved from the layer 3
         # verify checksum
         # send ACK
-        to_layer_five("B", pkt.payload.data);
+        if pkt.checksum != pkt.get_checksum():
+            to_layer_three("B", pkt)
+            return
+        if pkt.seqnum != self.expect_seq:
+            to_layer_three("B", pkt)
+            return
+        to_layer_five("B", pkt.payload.data)
+        self.packet_to_send.acknum = self.expect_seq
+        self.packet_to_send.checksum = self.packet_to_send.get_checksum()
+        to_layer_three("B", pkt)
         return
 
     def B_output(self, m):
