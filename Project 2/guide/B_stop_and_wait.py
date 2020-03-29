@@ -6,6 +6,7 @@ class B:
     def __init__(self):
         # stop and wait, the initialization of B
         # The state only need to maintain the information of expected sequence number of the packet
+        self.seq = 0
 
     def output(self, m):
 
@@ -15,6 +16,15 @@ class B:
         # If the packet is the right one, you need to pass to the fifth layer "to_layer_five(entity,payload)"
         # Send acknowledgement using "send_ack(entity,seq)" based on the correctness of received packet
         # If the packet is the correct one, in the last step, you need to update its state ( update the expected sequence number)
+        if pkt.checksum != pkt.get_checksum():
+            self.send_ack("B", 1-self.seq)
+            return
+        if pkt.seqnum != self.seq:
+            self.send_ack("B", 1-self.seq)
+            return
+        self.send_ack("B", self.seq)
+        to_layer_five("B", pkt.payload)
+        self.seq = 1 - self.seq            
 
     def B_handle_timer(self):
 
