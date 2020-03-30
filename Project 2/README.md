@@ -26,7 +26,10 @@
     * Enter TRACE: 0
 
 ### Data structure:
-* packet, seq used to indicate the status, state used to indicate the state, estimated_rtt used to indicate the state of timer
+* packet used to send another side
+* seq used to indicate the status
+* state used to indicate the state,
+* estimated_rtt used to indicate the state of timer
 
 ### Function:
 * A_timerinterrupt(), A_output(), A_input(), A_init(), B_input(), and B_init() implement a stop-and-wait for transferring data from A-side to  B-side. The protocol uses both ACK and NACK messages.
