@@ -23,8 +23,9 @@ class B:
             self.send_ack("B", 1-self.seq)
             return
         self.send_ack("B", self.seq)
-        to_layer_five("B", pkt.payload)
+        to_layer_five("B", pkt.payload.data)
         self.seq = 1 - self.seq            
+        return
 
     def B_handle_timer(self):
 
