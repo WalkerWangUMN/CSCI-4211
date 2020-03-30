@@ -26,8 +26,29 @@
     * Enter TRACE: 0
 
 ### Data structure:
-
+* packet, seq used to indicate the status, state used to indicate the state, estimated_rtt used to indicate the state of timer
 
 ### Function:
-* For Alternating-Bit-Protocol Version:
-    * A_timerinterrupt(), A_output(), A_input(), A_init(), B_input(), and B_init() implement a stop-and-wait for transferring data from A-side to  B-side. The protocol uses both ACK and NACK messages.
+* A_timerinterrupt(), A_output(), A_input(), A_init(), B_input(), and B_init() implement a stop-and-wait for transferring data from A-side to  B-side. The protocol uses both ACK and NACK messages.
+* B_init()
+    * initialization of B
+* B_input() 
+    * verify the checksum and acknowlegement number
+    * send packet to the fifth layer and acknowlegement
+    * update the expected sequence number
+* A__init__()
+    * initialization of A
+* A_input()
+    * verify the checksum and acknowlegement number
+    * stop timer
+    * update the status of A
+* A_output()
+    * verify the status of A
+    * construct the packet
+    * send the packet using to_layer_three
+    * save the packet
+    * set the timer
+* A_handler_timer
+    * verify the status of A
+    * send the packet using to_layer_three
+    * set the timer

@@ -6,26 +6,15 @@ class B:
         # TODO: initialization of the state of B
         # self.seq
         # ...
-        self.seq = 0
         return
 
     def B_input(self, pkt):
-        # stop and wait, B_input
-        # you need to verify the checksum to make sure that packet isn't corrupted
-        # If the packet is the right one, you need to pass to the fifth layer "to_layer_five(entity,payload)"
-        # Send acknowledgement using "send_ack(entity,seq)" based on the correctness of received packet
-        # If the packet is the correct one, in the last step, you need to update its state ( update the expected sequence number)
-        if pkt.checksum != pkt.get_checksum():
-            self.send_ack("B", 1-self.seq)
-            return
-        if pkt.seqnum != self.seq:
-            self.send_ack("B", 1-self.seq)
-            return
-        self.send_ack("B", self.seq)
-        to_layer_five("B", pkt.payload.data)
-        self.seq = 1 - self.seq    
+        # TODO: process the packet recieved from the layer 3
+        # verify checksum
+        # send ACK
+        to_layer_five("B", pkt.payload.data);
         return
-        
+
     def B_output(self, m):
         return
 

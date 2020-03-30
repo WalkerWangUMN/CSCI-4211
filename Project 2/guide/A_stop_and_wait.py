@@ -25,13 +25,13 @@ class A:
         # Set the timer using "evl.start_timer(entity,time)", and the time should be set to estimated_rtt. Make sure that there is only one timer started in the event list.
         # In the end, you should change the state to "WAIT_ACK"
         if self.state != WAIT_LAYER5: return
-        pkt = packet()
+        pkt = packet(seqnum, payload)
         pkt.seqnum = self.seq
         memmove(pkt.payload, m.data, 20)
         pkt.checksum = pkt.get_checksum()
         self.last_packet = pkt
         self.state = WAIT_ACK
-        to_layer_three("A", pkt)
+        self.to_layer_three("A", pkt)
         self.start_timer("A", self.estimated_rtt)
 
     def A_input(self, pkt):
@@ -54,6 +54,6 @@ class A:
         # so you need to resend the last packet "using to_layer_three()"
         # After sending the last packet, don't forget to set the timer again
         if self.state != WAIT_ACK: return
-        to_layer_three("A", self.last_packet)
+        self.to_layer_three("A", self.last_packet)
         self.start_timer("A", self.estimated_rtt)
 a = A()
