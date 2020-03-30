@@ -1,11 +1,11 @@
 # CSCI4211_rdt_python
 
-How to run:
+### How to run:
 * install Python 3
 * change directory to the root directory
 * run "python3 main.py" in command line
 
-Test cases:
+### Test cases:
 * No loss and no error scenario to demonstrate that the code works under no error case:
     * Enter the number of messages to simulate: 10
     * Enter packet loss probability [enter 0.0 for no loss]: 0.0
@@ -25,9 +25,9 @@ Test cases:
     * Enter average time between messages from sender's layer5 [ > 0.0]: 10.0
     * Enter TRACE: 0
 
-Data structure:
+### Data structure:
 
 
-Function:
+### Function:
 * For Alternating-Bit-Protocol Version:
     * A_timerinterrupt(), A_output(), A_input(), A_init(), B_input(), and B_init() implement a stop-and-wait for transferring data from A-side to  B-side. The protocol uses both ACK and NACK messages.
