@@ -28,7 +28,7 @@
 ### Data structure:
 * packet used to send another side
 * seq used to indicate the status
-* state used to indicate the state,
+* state used to indicate the state
 * estimated_rtt used to indicate the state of timer
 
 ### Function:
