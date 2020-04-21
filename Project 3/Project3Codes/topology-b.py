@@ -20,7 +20,43 @@ class AssignmentNetworks(Topo):
         lvl2_delay = '20ms'
         lvl3_delay = '10ms'
 
-        #Start to build the topology here
+        #Start to build the tree here.
+        c1 = self.addSwitch('c1')
+
+        a1 = self.addSwitch('a1')
+        a2 = self.addSwitch('a2')
+
+        e1 = self.addSwitch('e1')
+        e2 = self.addSwitch('e2')
+        e3 = self.addSwitch('e3')
+        e4 = self.addSwitch('e4')
+
+        h1 = self.addHost('h1')
+        h2 = self.addHost('h2')
+        h3 = self.addHost('h3')
+        h4 = self.addHost('h4')
+        h5 = self.addHost('h5')
+        h6 = self.addHost('h6')
+        h7 = self.addHost('h7')
+        h8 = self.addHost('h8')
+       
+        self.addLink(c1, a1, bw=lvl1_bw, delay=lvl1_delay)
+        self.addLink(c1, a2, bw=lvl1_bw, delay=lvl1_delay)
+
+        self.addLink(a1, e1, bw=lvl2_bw, delay=lvl2_delay)
+        self.addLink(a1, e2, bw=lvl2_bw, delay=lvl2_delay)
+
+        self.addLink(a2, e3, bw=lvl2_bw, delay=lvl2_delay)
+        self.addLink(a2, e4, bw=lvl2_bw, delay=lvl2_delay)
+        
+        self.addLink(e1, h1, bw=lvl3_bw, delay=lvl3_delay)
+        self.addLink(e1, h2, bw=lvl3_bw, delay=lvl3_delay)
+        self.addLink(e2, h3, bw=lvl3_bw, delay=lvl3_delay)
+        self.addLink(e2, h4, bw=lvl3_bw, delay=lvl3_delay)
+        self.addLink(e3, h5, bw=lvl3_bw, delay=lvl3_delay)
+        self.addLink(e3, h6, bw=lvl3_bw, delay=lvl3_delay)
+        self.addLink(e4, h7, bw=lvl3_bw, delay=lvl3_delay)
+        self.addLink(e4, h8, bw=lvl3_bw, delay=lvl3_delay)
 
        
  
