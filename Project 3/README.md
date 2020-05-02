@@ -9,6 +9,6 @@
 * function _handle_PacketIn(event):
   * PortTable[src_mac + switchID] = packetInPort
   * if dst_mac and switchID are not the key for the port table:
-    send packet to all the ports except the src port
+    * send packet to all the ports except the src port
   * else:
-    require the switch to foraward packets to output port
+    * require the switch to foraward packets to output port
