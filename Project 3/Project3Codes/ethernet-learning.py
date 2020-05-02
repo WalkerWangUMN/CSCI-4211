@@ -8,7 +8,7 @@ log = core.getLogger()
 
 # !!!!! PROJ3 Define your data structures here
 
-table = {}
+Table = {}
 
 # Handle messages the switch has sent us because it has no
 # matching rule.
@@ -21,25 +21,6 @@ def _handle_PacketIn (event):
   # use POX to parse the packet
   packet = event.parsed
 
-  table[(event.connection,packet.src)] = event.port
-  outputPort = table.get((event.connection,packet.dst))
-  if outputPort is None:
-    msg = of.ofp_packet_out(data = event.ofp)
-    msg.actions.append(of.ofp_action_output(port =  of.OFPP_FLOOD))
-    event.connection.send(msg)
-  else:
-    msg = of.ofp_flow_mod()
-    msg.match.dl_dst = packet.src
-    msg.match.dl_src = packet.dst
-    msg.actions.append(of.ofp_action_output(port = event.port))
-    event.connection.send(msg)
-
-    msg = of.ofp_flow_mod()
-    msg.data = event.ofp
-    msg.match.dl_src = packet.src
-    msg.match.dl_dst = packet.dst
-    msg.actions.append(of.ofp_action_output(port = outputPort))
-    event.connection.send(msg)
   # get src and dst mac addresses
   src_mac = str(packet.src)
   dst_mac = str(packet.dst)
@@ -51,6 +32,24 @@ def _handle_PacketIn (event):
 
   # !!!!! PROJ3 Your logic goes here
 
+  if src_mac + switchID not in Table:
+    Table[src_mac+switchID] = packetInPort
+
+  if dst_mac+switchID not in Table:
+    log.info("Switch {}: [Unknown destination {}] <Flood operation>".format(switchID,dst_mac))
+    message = of.ofp_packet_out()
+    message.data = event.ofp
+    message.in_port = packetInPort
+    action = of.ofp_action_output(port =  of.OFPP_FLOOD)
+    message.actions.append(action)
+    event.connection.send(message)
+  else:
+    log.info("Data flow: {}.{} -> {}.{}".format(src_mac, packetInPort, dst_mac, Table[dst_mac+switchID]))
+    message = of.ofp_flow_mod()
+    message.data = event.ofp
+    action = of.ofp_action_output(port = Table[dst_mac+switchID])
+    message.actions.append(action)
+    event.connection.send(message)
 
 def launch ():
   core.openflow.addListenerByName("PacketIn", _handle_PacketIn)

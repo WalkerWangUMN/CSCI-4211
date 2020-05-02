@@ -11,8 +11,8 @@ class AssignmentNetworks(Topo):
     def __init__(self, **opts):
         Topo.__init__(self, **opts)
         
-	# switch performance parameters based on level
-	lvl1_bw = 100
+        # switch performance parameters based on level
+        lvl1_bw = 100
         lvl2_bw = 40
         lvl3_bw = 10
 
@@ -39,7 +39,7 @@ class AssignmentNetworks(Topo):
         h6 = self.addHost('h6')
         h7 = self.addHost('h7')
         h8 = self.addHost('h8')
-       
+
         self.addLink(c1, a1, bw=lvl1_bw, delay=lvl1_delay)
         self.addLink(c1, a2, bw=lvl1_bw, delay=lvl1_delay)
 
@@ -58,8 +58,7 @@ class AssignmentNetworks(Topo):
         self.addLink(e4, h7, bw=lvl3_bw, delay=lvl3_delay)
         self.addLink(e4, h8, bw=lvl3_bw, delay=lvl3_delay)
 
-       
- 
+
         
 if __name__ == '__main__':
     setLogLevel( 'info' )
