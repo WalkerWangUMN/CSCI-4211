@@ -7,8 +7,8 @@
   * send packets to the destination and record and inform to switch the interface
 ## Pseudocode
 * function _handle_PacketIn(event):
-  PortTable[src_mac + switchID] = packetInPort
-  if dst_mac and switchID are not the key for the port table:
+  * PortTable[src_mac + switchID] = packetInPort
+  * if dst_mac and switchID are not the key for the port table:
     send packet to all the ports except the src port
-  else:
+  * else:
     require the switch to foraward packets to output port
